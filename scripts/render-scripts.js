@@ -3,6 +3,7 @@ const fs = require('fs');
 const packageJSON = require('../package.json');
 const upath = require('upath');
 const sh = require('shelljs');
+const repositoryURL = packageJSON.repository.url.replace(/\.git$/, '');
 
 module.exports = function renderScripts() {
 
@@ -17,7 +18,7 @@ module.exports = function renderScripts() {
     const copyright = `/*!
 * Start Bootstrap - ${packageJSON.title} v${packageJSON.version} (${packageJSON.homepage})
 * Copyright 2013-${new Date().getFullYear()} ${packageJSON.author}
-* Licensed under ${packageJSON.license} (https://github.com/StartBootstrap/${packageJSON.name}/blob/master/LICENSE)
+* Licensed under ${packageJSON.license} (${repositoryURL}/blob/master/LICENSE)
 */
 `
     const scriptsJS = fs.readFileSync(sourcePathScriptsJS);

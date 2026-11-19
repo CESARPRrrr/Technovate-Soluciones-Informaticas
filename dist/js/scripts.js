@@ -1,7 +1,26 @@
 /*!
-* Start Bootstrap - Business Frontpage v5.0.9 (https://startbootstrap.com/template/business-frontpage)
-* Copyright 2013-2023 Start Bootstrap
-* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-business-frontpage/blob/master/LICENSE)
+* Start Bootstrap - TECHNOVA - Soluciones Informáticas v5.0.9 (https://github.com/CESARPRrrr/technova-soluciones-informaticas)
+* Copyright 2013-2026 Start Bootstrap
+* Licensed under MIT (https://github.com/CESARPRrrr/technova-soluciones-informaticas/blob/master/LICENSE)
 */
-// This file is intentionally blank
-// Use this file to add JavaScript to your project
+const navigationToggle = document.querySelector('.navbar-toggler');
+const navigationMenu = document.querySelector('#mainNavigation');
+
+if (navigationToggle && navigationMenu) {
+    const setNavigationOpen = (isOpen) => {
+        navigationMenu.classList.toggle('show', isOpen);
+        navigationToggle.setAttribute('aria-expanded', String(isOpen));
+        navigationToggle.setAttribute(
+            'aria-label',
+            isOpen ? 'Cerrar menú de navegación' : 'Abrir menú de navegación'
+        );
+    };
+
+    navigationToggle.addEventListener('click', () => {
+        setNavigationOpen(navigationToggle.getAttribute('aria-expanded') !== 'true');
+    });
+
+    navigationMenu.querySelectorAll('a[href^="#"]').forEach((link) => {
+        link.addEventListener('click', () => setNavigationOpen(false));
+    });
+}

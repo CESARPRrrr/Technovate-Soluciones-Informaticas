@@ -9,6 +9,7 @@ const sh = require('shelljs');
 
 const stylesPath = '../src/scss/styles.scss';
 const destPath = upath.resolve(upath.dirname(__filename), '../dist/css/styles.css');
+const repositoryURL = packageJSON.repository.url.replace(/\.git$/, '');
 
 module.exports = function renderSCSS() {
     
@@ -36,7 +37,7 @@ module.exports = function renderSCSS() {
 const entryPoint = `/*!
 * Start Bootstrap - ${packageJSON.title} v${packageJSON.version} (${packageJSON.homepage})
 * Copyright 2013-${new Date().getFullYear()} ${packageJSON.author}
-* Licensed under ${packageJSON.license} (https://github.com/StartBootstrap/${packageJSON.name}/blob/master/LICENSE)
+* Licensed under ${packageJSON.license} (${repositoryURL}/blob/master/LICENSE)
 */
 @import "${stylesPath}"
 `
