@@ -9,5 +9,9 @@ secrets/
 credentials/
 src/assets/*.jpg
 src/assets/*.jpeg
+!src/assets/Cesar-Pina.jpg
+!src/assets/Manuel-Barsik.jpg
 dist/assets/*.jpg
 dist/assets/*.jpeg
+!dist/assets/cesar-pina.jpg
+!dist/assets/manuel-barsik.jpg

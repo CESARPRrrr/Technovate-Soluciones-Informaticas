@@ -1,6 +1,6 @@
 # TECHNOVA
 
-Sitio empresarial adaptable para presentar la propuesta de identidad y servicios digitales de TECHNOVA. Los datos institucionales y los canales definitivos de contacto deben confirmarse antes de publicar el sitio.
+Sitio empresarial adaptable de TECHNOVA, con perfiles de equipo y formulario de contacto conectado a Formspree.
 
 ## Descripción
 
@@ -28,7 +28,7 @@ El proyecto parte de la plantilla de código abierto **Business Frontpage**, de 
 - Node.js y npm instalados.
 - Acceso a la red para instalar dependencias por primera vez.
 
-No se requiere base de datos ni credenciales para construir el sitio. Esta versión provisional no incluye formulario ni integra un servicio de envío; los perfiles identificables están ocultos hasta confirmar autorizaciones. El proveedor de hosting puede procesar registros técnicos de acceso bajo sus propias condiciones.
+No se requiere base de datos ni credenciales para construir el sitio. El formulario envía nombre, correo, teléfono opcional y mensaje a Formspree; no se muestra la dirección de correo de destino. El proveedor de hosting y Formspree pueden procesar datos técnicos o enviados de acuerdo con sus condiciones.
 
 ## Instalación
 
@@ -58,13 +58,9 @@ El comando elimina y vuelve a generar `dist/` a partir de `src/`. También está
 
 El proyecto está preparado para GitHub Pages mediante [`.github/workflows/pages.yml`](./.github/workflows/pages.yml). El workflow instala dependencias con `npm ci`, compila y publica el contenido de `dist/` al hacer push a `master`.
 
-Para activar la publicación:
+El workflow publica `dist/` cuando se actualiza `master`. Los cambios de una rama de trabajo aparecen en el sitio después de revisar y combinar su Pull Request y confirmar que la ejecución de GitHub Actions finalizó correctamente.
 
-1. En GitHub, configura **Settings → Pages → Build and deployment → Source: GitHub Actions**.
-2. Revisa y combina la rama de trabajo a `master` mediante una Pull Request.
-3. Comprueba el resultado en la URL de Pages que GitHub muestre en **Settings → Pages**.
-
-Esta versión pública es provisional: no incluye datos personales, formulario de contacto ni fotografías identificables. Completa esos elementos únicamente tras confirmar las autorizaciones y publicar la información de privacidad correspondiente. Conserva las atribuciones de Start Bootstrap y la licencia MIT.
+La compilación incluye las fotografías del equipo y los recursos usados por la página. Conserva las atribuciones de Start Bootstrap y la licencia MIT.
 
 `npm audit` y `npm audit --omit=dev` reportaron cero vulnerabilidades tras actualizar las dependencias afectadas.
 
@@ -81,7 +77,7 @@ Esta versión pública es provisional: no incluye datos personales, formulario d
 │   ├── pug/index.pug              # Contenido y estructura de la página TECHNOVA
 │   └── scss/styles.scss           # Estilos Bootstrap y personalización visual
 ├── ATRIBUCIONES.md
-├── .gitignore                    # Excluye secretos y fotos pendientes de autorización
+├── .gitignore                    # Excluye secretos y permite solo las fotos aprobadas del equipo
 ├── CHANGELOG.md
 ├── DOCUMENTACION_MODIFICACIONES.md
 ├── LICENSE                        # Licencia MIT original, preservada
@@ -94,15 +90,15 @@ Esta versión pública es provisional: no incluye datos personales, formulario d
 - Menú móvil expandible, operable con JavaScript y con enlaces que lo cierran al seleccionar una sección.
 - Diseño adaptable basado en los puntos de quiebre y la grilla de Bootstrap.
 - Secciones de servicios, descripción de la propuesta TECHNOVA y proceso de trabajo.
-- Sección provisional de equipo que no muestra perfiles ni fotografías hasta contar con autorización.
-- Aviso provisional de contacto; no hay formulario activo ni envío a servicios externos.
+- Perfiles de César Piña y Manuel Barsik, con sus cargos y fotografías.
+- Formulario con validación del navegador y envío a Formspree; muestra confirmación o error sin revelar el correo de destino.
 
 ## Modificaciones realizadas
 
 - Sustitución del contenido genérico de la plantilla por una propuesta visual y textual para TECHNOVA.
-- Personalización de la navegación, hero, servicios, presentación institucional, proceso de trabajo, avisos provisionales de equipo/contacto y pie de página.
+- Personalización de la navegación, hero, servicios, presentación institucional, proceso de trabajo, equipo, contacto y pie de página.
 - Incorporación de una identidad visual propia mediante SCSS y elementos gráficos CSS.
-- Implementación de navegación móvil y del estado provisional de privacidad/contacto sin recopilación de datos.
+- Implementación de navegación móvil y restauración del formulario Formspree.
 - Actualización de metadatos del paquete y enlaces de licencia generados para reflejar el repositorio TECHNOVA, sin alterar la autoría original.
 - Conservación del sistema de construcción, Bootstrap y atribuciones/licencia de la plantilla original.
 
@@ -110,12 +106,11 @@ El detalle por archivo, las pruebas ejecutadas y los pendientes se documentan en
 
 ## Información pendiente de completar
 
-- Datos institucionales y definitivos de contacto, incluyendo correo y ubicación si corresponde.
-- Confirmar, antes de incorporarlos, la autorización de publicación de nombres, cargos, descripciones e imágenes del equipo.
+- Publicar o enlazar el aviso de privacidad aplicable al procesamiento del formulario por Formspree y al hosting.
+- Incorporar descripciones biográficas adicionales solo si se facilitan textos aprobados; por ahora se muestran únicamente cargos y descripciones basadas en ellos.
 - Perfiles profesionales o redes sociales, si el equipo decide proporcionarlos.
 - Confirmación del alcance de los servicios y del contenido institucional antes de publicar como información oficial.
-- Activar GitHub Pages con **Source: GitHub Actions** y combinar la rama de trabajo a `master`.
 
 ## Pruebas y control de calidad
 
-`npm run build`, `npm start`, `npm audit` y `npm audit --omit=dev` se ejecutaron después de las correcciones. La interfaz se comprobó en navegador en tamaños móvil y escritorio. Los resultados detallados están en [`DOCUMENTACION_MODIFICACIONES.md`](./DOCUMENTACION_MODIFICACIONES.md). No hay suite automatizada de pruebas configurada en `package.json`.
+`npm run build` y `npm start` se ejecutaron para la restauración de perfiles y contacto; las imágenes y el flujo de formulario se comprobaron en navegador con respuestas simuladas, sin enviar datos reales. Los resultados detallados están en [`DOCUMENTACION_MODIFICACIONES.md`](./DOCUMENTACION_MODIFICACIONES.md). No hay suite automatizada de pruebas configurada en `package.json`.

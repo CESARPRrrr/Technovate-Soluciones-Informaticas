@@ -15,6 +15,14 @@ module.exports = function renderAssets() {
             destination: upath.join(distPath, 'assets/favicon.ico')
         },
         {
+            source: upath.join(sourcePath, 'Cesar-Pina.jpg'),
+            destination: upath.join(distPath, 'assets/cesar-pina.jpg')
+        },
+        {
+            source: upath.join(sourcePath, 'Manuel-Barsik.jpg'),
+            destination: upath.join(distPath, 'assets/manuel-barsik.jpg')
+        },
+        {
             source: upath.join(iconPackagePath, 'bootstrap-icons.min.css'),
             destination: upath.join(distPath, 'css/bootstrap-icons.min.css')
         },

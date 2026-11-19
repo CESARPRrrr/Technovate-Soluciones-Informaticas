@@ -24,3 +24,43 @@ if (navigationToggle && navigationMenu) {
         link.addEventListener('click', () => setNavigationOpen(false));
     });
 }
+
+const contactForm = document.querySelector('#contactForm');
+
+if (contactForm) {
+    const formStatus = contactForm.querySelector('#formStatus');
+    const submitButton = contactForm.querySelector('button[type="submit"]');
+
+    contactForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        if (!contactForm.reportValidity()) {
+            return;
+        }
+
+        submitButton.disabled = true;
+        formStatus.textContent = 'Enviando mensaje…';
+
+        try {
+            const response = await fetch(contactForm.action, {
+                method: 'POST',
+                body: new FormData(contactForm),
+                headers: { Accept: 'application/json' }
+            });
+
+            if (!response.ok) {
+                formStatus.textContent =
+                    'No se pudo enviar el mensaje. Inténtalo de nuevo más tarde.';
+                return;
+            }
+
+            contactForm.reset();
+            formStatus.textContent = 'Tu mensaje se envió correctamente. Gracias por contactarnos.';
+        } catch {
+            formStatus.textContent =
+                'No se pudo conectar para enviar el mensaje. Revisa tu conexión e inténtalo de nuevo.';
+        } finally {
+            submitButton.disabled = false;
+        }
+    });
+}

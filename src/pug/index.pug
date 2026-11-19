@@ -3,7 +3,7 @@ html(lang='es')
     head
         meta(charset='utf-8')
         meta(name='viewport', content='width=device-width, initial-scale=1')
-        meta(name='description', content='Propuesta de identidad y soluciones digitales TECHNOVA, en desarrollo y pendiente de validación institucional.')
+        meta(name='description', content='TECHNOVA - Soluciones Informáticas. Desarrollo web, diseño de experiencias y consultoría tecnológica.')
         meta(name='theme-color', content='#061A32')
         title TECHNOVA | Soluciones Informáticas
         link(rel='icon', type='image/x-icon', href='assets/favicon.ico')
@@ -177,21 +177,56 @@ html(lang='es')
                             p.section-kicker DETRÁS DE TECHNOVA
                             h2#team-title Nuestro equipo.
                         .col-lg-5
-                            p.section-intro Los perfiles, cargos y fotografías se incorporarán cuando se confirmen y autoricen para publicación.
-                    .team-pending(role='status')
-                        i.bi.bi-people(aria-hidden='true')
-                        p.mb-0 Los perfiles del equipo están en preparación. No se muestran nombres ni fotografías en esta versión provisional.
+                            p.section-intro Conoce a las personas que lideran TECHNOVA.
+                    .row.g-4
+                        .col-md-6
+                            article.team-card.h-100
+                                .team-photo.team-photo-cp
+                                    img(src='assets/cesar-pina.jpg', alt='César Piña, Director General de TECHNOVA', loading='lazy', width='768', height='750')
+                                .team-card-body
+                                    span.team-role Director General (CEO)
+                                    h3 César Piña
+                                    p Dirección general de TECHNOVA.
+                        .col-md-6
+                            article.team-card.h-100
+                                .team-photo.team-photo-mb
+                                    img(src='assets/manuel-barsik.jpg', alt='Manuel Barsik, Director de Tecnología y Operaciones de TECHNOVA', loading='lazy', width='768', height='750')
+                                .team-card-body
+                                    span.team-role Director de Tecnología y Operaciones (CTO/COO)
+                                    h3 Manuel Barsik
+                                    p Liderazgo de tecnología y operaciones.
 
             section#contacto.contact-section.section-space(aria-labelledby='contact-title')
                 .container.px-4.px-lg-5
                     .row.g-5
                         .col-lg-5.contact-intro
                             p.section-kicker EMPECEMOS UNA CONVERSACIÓN
-                            h2#contact-title Canal de contacto en preparación.
-                            p Esta versión provisional no incluye un formulario ni integra un servicio de envío. Los datos institucionales, el canal de contacto y la información de privacidad se publicarán cuando estén confirmados. El proveedor de hosting puede procesar registros técnicos de acceso bajo sus propias condiciones.
+                            h2#contact-title Cuéntanos sobre tu proyecto.
+                            p Completa el formulario y el equipo de TECHNOVA recibirá tu mensaje.
                             .contact-detail
-                                i.bi.bi-shield-check(aria-hidden='true')
-                                span No hay formulario activo ni envío a servicios externos.
+                                i.bi.bi-send(aria-hidden='true')
+                                span El formulario utiliza Formspree para procesar y entregar tu mensaje.
+                        .col-lg-7
+                            form#contactForm.contact-form(action='https://formspree.io/f/xkjjlwdr', method='POST')
+                                .row.g-3
+                                    .col-md-6
+                                        label.form-label(for='contactName') Nombre
+                                        input#contactName.form-control(type='text', name='name', autocomplete='name', required, maxlength='120')
+                                    .col-md-6
+                                        label.form-label(for='contactEmail') Correo electrónico
+                                        input#contactEmail.form-control(type='email', name='email', autocomplete='email', required, maxlength='254')
+                                    .col-12
+                                        label.form-label(for='contactPhone')
+                                            | Teléfono
+                                            span.optional-label  (opcional)
+                                        input#contactPhone.form-control(type='tel', name='phone', autocomplete='tel', maxlength='40')
+                                    .col-12
+                                        label.form-label(for='contactMessage') Mensaje
+                                        textarea#contactMessage.form-control(name='message', rows='5', required, minlength='10', maxlength='5000')
+                                    .col-12
+                                        button.btn.btn-accent(type='submit') Enviar mensaje
+                                        p.form-note Los datos enviados se procesan mediante Formspree para entregar tu consulta.
+                                        p#formStatus.form-status(role='status', aria-live='polite')
 
         footer.site-footer
             .container.px-4.px-lg-5
