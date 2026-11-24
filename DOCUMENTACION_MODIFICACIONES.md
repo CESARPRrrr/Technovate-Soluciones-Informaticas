@@ -1,12 +1,62 @@
-# Documentación técnica de la adaptación TECHNOVA
+# Documentación técnica y preparación para auditoría de TECHNOVA
 
 ## Alcance y base de partida
 
-El proyecto adapta la plantilla **Business Frontpage** de Start Bootstrap, originalmente una página promocional empresarial.
+El nombre visible del proyecto es TECHNOVA / Soluciones Informáticas. El objetivo es presentar una propuesta de empresa tecnológica y sus áreas de servicios en un sitio estático, adaptable y accesible, además de verificar su construcción antes de publicarlo.
 
-Se conservó la organización de fuentes Pug, SCSS y JavaScript, junto con las tareas de compilación existentes y Bootstrap 5.2.3. La procedencia y la licencia se describen en [`ATRIBUCIONES.md`](./ATRIBUCIONES.md). El archivo [`LICENSE`](./LICENSE) original de MIT no se modificó.
+El proyecto partió del repositorio existente de la plantilla **Business Frontpage** de Start Bootstrap. Se conservaron la estructura de construcción y la base técnica Bootstrap, y se modificaron el contenido, la identidad visual y las secciones para TECHNOVA. La autoría original no se atribuye al equipo TECHNOVA: la procedencia se documenta en [`ATRIBUCIONES.md`](./ATRIBUCIONES.md) y se preserva el archivo [`LICENSE`](./LICENSE) MIT sin cambios.
 
-La página actual presenta TECHNOVA y sus servicios digitales.
+## Tecnologías y arquitectura
+
+El proyecto no utiliza un framework de aplicación ni un servidor backend propio. Pug genera el HTML, Sass importa Bootstrap y PostCSS/Autoprefixer procesa CSS, JavaScript implementa la navegación móvil y el envío del formulario, y Node.js/npm orquestan las tareas.
+
+| Ruta | Función |
+|---|---|
+| `src/pug/index.pug` | Fuente del documento, navegación, servicios, equipo, contacto y pie de página. |
+| `src/scss/styles.scss` | Importación de Bootstrap y estilos propios/responsive de TECHNOVA. |
+| `src/js/scripts.js` | Menú móvil y estado accesible del envío del formulario. |
+| `src/assets/` | Favicon y dos fotografías de equipo disponibles. |
+| `scripts/` | Tareas de construcción, copia de recursos, vista previa y validación de `dist/`. |
+| `dist/` | Artefacto estático generado; no es fuente editable. |
+| `.github/workflows/ci.yml` | Integración continua; instala dependencias, construye y valida enlaces/recursos. No despliega. |
+| `package.json` / `package-lock.json` | Metadatos, comandos y versiones bloqueadas de dependencias. |
+| `README.md`, `CHANGELOG.md`, `ATRIBUCIONES.md` | Guía de uso, registro de cambios y atribución/licencias. |
+| `LICENSE` | Licencia MIT de la plantilla original, preservada. |
+
+Las dependencias principales de ejecución son Bootstrap 5.2.3 y Bootstrap Icons 1.10.5. Las herramientas de construcción incluyen Pug 3, Sass 1.60, PostCSS, Autoprefixer, Prettier, ShellJS y utilidades de observación/vista previa. Las versiones exactas están en `package-lock.json`.
+
+## Instalación, ejecución y construcción
+
+Con Node.js y npm instalados, desde la raíz:
+
+```bash
+npm ci
+npm start
+npm run build
+npm run check:dist
+```
+
+`npm ci` instala las versiones bloqueadas. `npm start` construye y abre la vista previa BrowserSync. `npm run build` limpia artefactos anteriores de `dist/` y ejecuta `build:pug`, `build:scss`, `build:scripts` y `build:assets`. `npm run check:js` analiza JavaScript fuente y generado sin ejecutarlo. `npm run check:dist` valida el idioma/tipo de documento, IDs únicos, anclas internas, esquemas de URL permitidos y archivos locales citados en HTML/CSS. Si falla una referencia o hay sintaxis inválida, el comando termina con error. No hay un comando `test` ni pruebas unitarias/de navegador automatizadas en el paquete.
+
+Otros comandos disponibles: `npm run clean`, `npm run build:pug`, `npm run build:scss`, `npm run build:scripts`, `npm run build:assets` y `npm run start:debug`.
+
+## Integración continua
+
+`.github/workflows/ci.yml` se ejecuta en `push`, `pull_request` y por `workflow_dispatch`. En un runner Linux configura Node.js 20, ejecuta `npm ci`, `npm run build`, `npm run check:js` y `npm run check:dist`. El permiso es solo lectura (`contents: read`); la concurrencia cancela ejecuciones anteriores del mismo flujo y referencia. Cualquier fallo de instalación, compilación o validación hace fallar el trabajo. No se configuran despliegues, credenciales ni secretos.
+
+## Publicación prevista en Netlify
+
+`netlify.toml` configura Node.js 20, el comando `npm run build && npm run check:js && npm run check:dist` y `dist/` como publicación. Netlify instala las dependencias del proyecto a partir de `package-lock.json`. El sitio usa una sola página y anclas HTML; no requiere un fallback SPA ni redirecciones especiales. Los recursos locales se construyen en `dist/`; la validación de CI y del build de Netlify falla ante enlaces locales a archivos inexistentes.
+
+Después de crear el repositorio nuevo, se debe importar en Netlify desde GitHub, autorizar la cuenta, seleccionar el repositorio y verificar que detecte el `netlify.toml`. Configurar la rama principal como producción y habilitar Deploy Previews para Pull Requests. Netlify puede desplegar automáticamente al integrarse cambios; nada de ello está enlazado o publicado en esta etapa. No está instalado el CLI de Netlify.
+
+## Formulario y privacidad
+
+El formulario contiene nombre, correo obligatorio, teléfono opcional y mensaje; usa validación nativa del navegador y está configurado para enviar a la URL Formspree que aparece en el HTML. El JavaScript solo muestra confirmación si la respuesta HTTP es exitosa, conserva los datos y muestra error si la respuesta falla. La petición GET de consulta al endpoint respondió 405 (método no permitido), resultado compatible con un endpoint de envío, pero no confirma que el formulario esté activo. No se envió un POST ni datos. La presencia de un endpoint público no confirma que la cuenta sea activa o esté controlada por TECHNOVA. No hay secretos de Formspree en el código; su identificador de formulario es público por diseño.
+
+No se encontró un aviso de privacidad aprobado. `PRIVACIDAD_BORRADOR.md` documenta los campos y procesamiento visibles y lista los datos legales/operativos por confirmar; no se debe publicar sin revisión del responsable. Entre otros, faltan identidad y contacto del responsable, finalidad/base legal, retención, región/subprocesadores y derechos aplicables. Evitar recopilar datos reales hasta completar y aprobar el aviso.
+
+Esta automatización no sustituye pruebas visuales, pruebas de interacción en navegador, revisión de accesibilidad ni comprobación de enlaces externos; esos aspectos requieren una auditoría adicional.
 
 ## Archivos de la adaptación
 
@@ -14,15 +64,19 @@ La página actual presenta TECHNOVA y sus servicios digitales.
 
 | Archivo | Función y cambios comprobables |
 |---|---|
-| `src/pug/index.pug` | Fuente de la página en español. Presenta perfiles del equipo con cargos y fotografías, y el formulario de contacto conectado a Formspree. |
+| `src/pug/index.pug` | Fuente de la página en español. Presenta perfiles del equipo con cargos y fotografías, y el formulario configurado para enviar a Formspree. |
 | `src/scss/styles.scss` | Importa Bootstrap y define la identidad TECHNOVA: paleta azul oscuro y azul luminoso, hero, tarjetas de equipo, ilustraciones CSS, secciones, formulario oscuro y pie de página. Incluye reglas responsive, movimiento reducido, estados de foco y salto al contenido. |
 | `src/js/scripts.js` | Controla la navegación móvil y el envío accesible del formulario, incluidos estados de éxito y error. |
 | `package.json` y `package-lock.json` | Identifican el proyecto y el repositorio TECHNOVA; se mantiene Start Bootstrap como autor de la plantilla y las dependencias bloqueadas. |
 | `scripts/render-scss.js` y `scripts/render-scripts.js` | Generan los encabezados de atribución con enlaces a la licencia del repositorio TECHNOVA. |
 | `scripts/sb-watch.js` | Recompila archivos observados con dependencias declaradas por el proyecto; ya no depende de la presencia transitiva de Lodash. |
 | `scripts/render-assets.js` | Copia favicon, fotografías aprobadas del equipo, iconos locales y avisos MIT a `dist/`. |
+| `scripts/check-dist.js` | Falla si hay IDs duplicados, anclas internas sin destino o referencias locales ausentes en HTML/CSS. |
+| `scripts/check-js.js` | Analiza sintaxis de JavaScript en scripts fuente y artefacto generado, sin ejecutar el código. |
+| `netlify.toml` | Configura la construcción y validación del sitio estático, Node.js 20 y `dist/` como carpeta publicada. |
+| `PRIVACIDAD_BORRADOR.md` | Resume el flujo de datos verificable y los datos que la persona responsable debe confirmar; no es aviso legal aprobado. |
 | `.gitignore` | Excluye secretos y permite explícitamente las dos fotografías aprobadas del equipo. |
-| `.github/workflows/pages.yml` | Instala dependencias, genera `dist/` y despliega a GitHub Pages al actualizar `master`. |
+| `.github/workflows/ci.yml` | Instala dependencias y verifica la compilación en pushes y Pull Requests; no despliega. |
 
 ### Artefactos generados y documentación
 
@@ -31,12 +85,12 @@ La página actual presenta TECHNOVA y sus servicios digitales.
 | `dist/index.html` | Página HTML generada desde Pug. |
 | `dist/css/styles.css` | Hoja CSS generada desde SCSS y procesada por PostCSS/Autoprefixer. |
 | `dist/js/scripts.js` | JavaScript distribuido, generado desde `src/js/scripts.js` con los encabezados de TECHNOVA y la atribución/licencia de la plantilla de origen. |
-| `README.md` | Instrucciones del proyecto, tecnologías, funciones de equipo/contacto, atribución y publicación mediante Pages. |
+| `README.md` | Propósito, tecnologías, comandos, CI, estructura, atribución y estado de publicación. |
 | `CHANGELOG.md` | Registro de las etapas de adaptación y verificaciones. |
 | `ATRIBUCIONES.md` | Procedencia de Start Bootstrap, licencia MIT y atribuciones de terceros. |
 | `DOCUMENTACION_MODIFICACIONES.md` | Este documento: alcance técnico, pruebas registradas y pendientes. |
 
-`dist/` es generado por el proceso de compilación existente; las fuentes que se deben editar son las de `src/`. Solo las dos fotografías solicitadas se copian como imágenes del equipo. El archivo `LICENSE` original se conserva sin cambios.
+`dist/` es generado por el proceso de compilación existente; las fuentes que se deben editar son las de `src/`. Solo se distribuyen las dos fotografías explícitamente configuradas. El archivo `LICENSE` original se conserva sin cambios.
 
 ## Adaptación de contenido y diseño
 
@@ -45,6 +99,8 @@ La página actual presenta TECHNOVA y sus servicios digitales.
 - Se retiraron los precios y los testimonios de muestra; no se presentan tarifas ni clientes no confirmados.
 - Se añadieron presentación institucional y una secuencia de trabajo de cuatro etapas: escuchar, definir, diseñar/construir y aprender/mejorar.
 - Se restauraron los perfiles con los nombres y cargos proporcionados, junto con las fotografías locales correspondientes.
+- En los archivos disponibles se encontraron dos perfiles con fotografía: César Piña (Director General/CEO) y Manuel Barsik (Director de Tecnología y Operaciones/CTO/COO). No hay información o imágenes aprobadas para dos integrantes adicionales; no se inventaron.
+- La cuadrícula usa tarjetas Bootstrap de media columna en pantallas medianas y mayores; se pueden agregar dos tarjetas más cuando se faciliten datos y fotografías aprobados, sin ocupar espacios con contenido de muestra.
 - No había biografías aprobadas disponibles en los archivos inspeccionados; los textos de apoyo se limitan a resumir los cargos, sin afirmar trayectoria, estudios ni logros.
 - Se creó una identidad gráfica con CSS y componentes propios. Las ilustraciones decorativas se construyen con CSS e iconos.
 - Se conservó la plantilla como origen y se añadió una referencia al repositorio de Start Bootstrap en el pie de página.
@@ -61,7 +117,7 @@ La página actual presenta TECHNOVA y sus servicios digitales.
 
 ## Privacidad y contacto
 
-El formulario envía nombre, correo, teléfono opcional y mensaje a `https://formspree.io/f/xkjjlwdr` mediante una solicitud `POST`. No se muestra la dirección de correo receptora. Al enviar, los datos se transmiten al proveedor Formspree; antes de recopilar datos de usuarios reales, el responsable del sitio debe verificar y publicar la información de privacidad aplicable y las condiciones del servicio.
+El formulario está configurado para enviar nombre, correo, teléfono opcional y mensaje a `https://formspree.io/f/xkjjlwdr` mediante una solicitud `POST`. No se muestra la dirección de correo receptora. Antes de recopilar datos de usuarios reales, el responsable del sitio debe verificar la titularidad/estado de la cuenta y publicar la información de privacidad aplicable y las condiciones del servicio.
 
 ## Restauración de equipo y formulario
 
@@ -71,21 +127,31 @@ El formulario envía nombre, correo, teléfono opcional y mensaje a `https://for
 
 ## Pruebas y verificaciones registradas
 
-Las verificaciones de esta restauración no enviaron datos reales a Formspree; las respuestas del formulario se simularon en navegador.
+Las comprobaciones de esta preparación se ejecutaron localmente con Node.js 18.19.1 y npm 9.2.0. No se enviaron datos reales a Formspree.
 
 | Comprobación | Resultado registrado |
 |---|---|
-| `npm run build` | Compilación Pug, Sass, JavaScript y assets completada correctamente después de restaurar perfiles y formulario. |
-| `npm start` | El servidor BrowserSync inició y sirvió el build local. |
-| Imágenes | Ambas fotografías generadas coincidieron por SHA-256 con sus fuentes y respondieron HTTP 200 en la vista previa. |
-| Formulario | En navegador, la validación bloqueó campos vacíos, teléfono quedó opcional, un envío simulado HTTP 200 mostró confirmación y limpió el formulario, y un HTTP 422 mostró error conservando los datos. No se envió información a Formspree. |
-| Vista móvil | En viewport de 390 px no hubo desbordamiento horizontal. |
-| Higiene del diff | `git diff --check` terminó sin errores. |
+| `npm ci` | Instaló las dependencias bloqueadas; npm informó 0 vulnerabilidades durante la instalación. |
+| `npm run build` | Pug, Sass/PostCSS, JavaScript y assets completaron correctamente. |
+| `npm run check:js` | Sintaxis válida en 16 archivos de `scripts/`, `src/js/` y `dist/js/`. |
+| `npm run check:dist` | Correcto: 8 referencias locales en HTML/CSS y 14 anclas internas comprobadas. |
+| YAML de GitHub Actions | Parseado con `yaml`; contiene los disparadores `push`, `pull_request` y `workflow_dispatch`. |
+| `netlify.toml` | Parseado con `tomllib`; comando de build, Node.js 20 y publicación `dist/` verificados. |
+| Enlaces externos | Los seis enlaces públicos de plantilla y tecnologías respondieron HTTP 200 a HEAD. Formspree devolvió 405 a GET sin enviar datos; esto no prueba estado de la cuenta. |
+| Vista previa `npm start` | BrowserSync inició y sirvió el sitio generado en `http://localhost:3000`. |
+| Navegación móvil | En ancho 390 px, el menú cambió `aria-expanded` a `true` al abrir y `false` al seguir el enlace a Servicios. El ancho del documento fue 375 px (sin desbordamiento horizontal). |
+| Navegación escritorio | En ancho 1366 px, el documento midió 1351 px (sin desbordamiento horizontal). |
+| Fotografías | Ambas imágenes cargaron en navegador con dimensiones naturales 768 × 750 px. |
+| Validación de formulario | El navegador rechazó campos obligatorios vacíos, correo con formato inválido y mensaje menor a 10 caracteres; aceptó teléfono vacío. No se envió el formulario. |
+| `git diff --check` | Sin errores de whitespace. |
 
-En `package.json` no se define una suite automatizada de pruebas. El workflow de Pages se ejecutará al actualizar `master`; esta rama no se ha combinado.
+En `package.json` no hay suite de pruebas unitarias o de navegador; la validación local del formulario y del menú comprueba estados del cliente, pero no certifica el estado de Formspree ni probó los mensajes de respuesta/error del servicio. El workflow CI corre Node.js 20 (la ejecución local se hizo con Node.js 18.19.1). La CI no consulta URLs externas ni verifica accesibilidad automáticamente. La vista previa se revisó en navegador; esta etapa confirma el build local, pero no despliegue en Netlify.
 
 ## Pendientes
 
-- Publicar o enlazar el aviso de privacidad aplicable al procesamiento del formulario por Formspree y al hosting.
+- Completar y aprobar `PRIVACIDAD_BORRADOR.md`, incluida la identidad y contacto del responsable, antes de recopilar datos reales.
 - Incorporar perfiles profesionales o redes sociales solo si el equipo los proporciona.
+- Confirmar si existen otros dos integrantes y, si corresponde, facilitar sus nombres, cargos y fotografías aprobados.
 - Validar con el equipo el contenido institucional y el alcance de los servicios antes de presentarlos como información oficial.
+- Confirmar la titularidad/estado del formulario Formspree y hacer una prueba real autorizada antes de publicarlo.
+- Conectar el repositorio nuevo con Netlify y revisar el Deploy Preview; Netlify CLI no está instalado y no se hizo un despliegue remoto.

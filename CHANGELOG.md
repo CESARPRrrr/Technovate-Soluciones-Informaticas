@@ -2,6 +2,16 @@
 
 Este registro describe cambios observables en la revisión técnica de TECHNOVA; no asigna fechas ni responsables no confirmados.
 
+## Preparación de CI y repositorio independiente
+
+- Se reemplazó el despliegue automático de GitHub Pages por un workflow de CI que instala dependencias, compila y valida el resultado en cada push, Pull Request y ejecución manual, sin publicar el sitio.
+- Se añadieron `npm run check:js` y `npm run check:dist` para detectar errores de sintaxis JavaScript, IDs duplicados, anclas internas sin destino y referencias locales rotas en el HTML/CSS generado.
+- Se añadió `netlify.toml` con la construcción validada, Node.js 20 y `dist/` como carpeta de publicación, sin reglas de despliegue remoto ni credenciales.
+- Se preparó un borrador de privacidad que separa los hechos observados de la información legal que debe confirmar el responsable antes de publicarlo.
+- Se amplió la documentación con el objetivo, arquitectura, dependencias, proceso de construcción, comandos, integración Netlify y límites conocidos.
+- Se documentó cómo iniciar un repositorio nuevo desde una copia sin `.git/`, preservando intacto el repositorio actual y sus remotos.
+- Se documentó Netlify como plataforma prevista, sin conectar una cuenta ni publicar el sitio.
+
 ## Preparación de la versión provisional
 
 - Se adaptó la portada de Business Frontpage de Start Bootstrap a una propuesta en español para TECHNOVA, conservando la atribución y la licencia MIT original.
@@ -11,7 +21,7 @@ Este registro describe cambios observables en la revisión técnica de TECHNOVA;
 - Se excluyeron las fotografías locales de Git y de `dist/`; la compilación copia únicamente los recursos declarados explícitamente.
 - Se actualizaron dependencias afectadas y se verificó el árbol resultante con las auditorías de npm.
 - Se sirve Bootstrap Icons desde el proyecto en vez de solicitarlo a un CDN.
-- Se configuró la compilación y el despliegue de `dist/` a GitHub Pages al actualizar `master`; la activación del servicio en la configuración del repositorio sigue siendo necesaria.
+- Se había configurado la compilación y el despliegue de `dist/` a GitHub Pages al actualizar `master`; esa configuración fue reemplazada por CI sin despliegue.
 - Se incluyen en `dist/assets/licenses/` los avisos MIT de Start Bootstrap, Bootstrap y Bootstrap Icons.
 - Se actualizaron README, atribuciones y documentación técnica para reflejar el contenido provisional, el proceso de compilación y los requisitos de publicación.
 

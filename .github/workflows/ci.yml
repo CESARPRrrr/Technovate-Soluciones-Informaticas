@@ -1,0 +1,44 @@
+# Nombre visible del flujo de integración continua en la pestaña Actions.
+name: CI
+
+# Eventos que inician las comprobaciones; no se configura ningún despliegue.
+on:
+    push: # Verifica cada cambio subido a cualquier rama.
+    pull_request: # Verifica los cambios propuestos antes de integrarlos.
+    workflow_dispatch: # Permite iniciar la verificación manualmente desde GitHub.
+
+# Permiso mínimo: el flujo solo necesita leer el contenido del repositorio.
+permissions:
+    contents: read # Permite a checkout descargar el código; no puede publicar cambios.
+
+# Agrupa ejecuciones por rama o PR y cancela las antiguas si llega una actualización.
+concurrency:
+    group: ci-${{ github.workflow }}-${{ github.ref }} # Evita ejecuciones duplicadas simultáneas.
+    cancel-in-progress: true # Conserva la ejecución más reciente para el mismo grupo.
+
+# Único trabajo: instalación reproducible, compilación y validación del resultado estático.
+jobs:
+    verify:
+        runs-on: ubuntu-latest # Usa un runner Linux mantenido por GitHub.
+        steps:
+            # Descarga el commit correspondiente al push o al Pull Request.
+            - name: Descargar el repositorio
+              uses: actions/checkout@v4
+            # Node 20 es compatible con las tareas del proyecto y la versión se fija en CI.
+            - name: Configurar Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 20 # Reutiliza una versión explícita para builds reproducibles.
+                  cache: npm # Cachea paquetes npm usando package-lock.json como clave.
+            # npm ci instala exactamente las versiones bloqueadas y falla ante un lock incoherente.
+            - name: Instalar dependencias bloqueadas
+              run: npm ci
+            # Compila Pug, Sass, JavaScript y assets; el comando falla si una etapa falla.
+            - name: Construir el sitio
+              run: npm run build
+            # Analiza la sintaxis de los scripts fuente y JavaScript generado sin ejecutarlos.
+            - name: Validar sintaxis JavaScript
+              run: npm run check:js
+            # Comprueba que los enlaces internos y los archivos referenciados existan en dist/.
+            - name: Validar HTML y recursos locales generados
+              run: npm run check:dist
