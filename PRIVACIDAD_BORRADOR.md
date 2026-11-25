@@ -9,7 +9,7 @@
 - El navegador valida campos obligatorios, el formato de correo y la longitud mínima/máxima establecida en el formulario.
 - El código cliente envía el formulario a Formspree y muestra un mensaje según la respuesta HTTP o un error de conexión. El proyecto no contiene un servidor propio ni define políticas de retención de datos.
 - El identificador de formulario está incluido en el HTML público para que el navegador pueda llamar al servicio; no es una contraseña ni un secreto. La configuración, titularidad y funcionamiento actual de la cuenta Formspree no se han verificado mediante un envío.
-- El hosting aún no está conectado; por tanto, el proveedor y sus condiciones de tratamiento no están confirmados.
+- El sitio está publicado en Netlify. No se han determinado aquí los datos técnicos que Netlify procesa ni las condiciones aplicables al sitio o la cuenta.
 
 ## Información que debe confirmar el responsable antes de publicar
 
@@ -20,7 +20,7 @@
 5. Proveedor Formspree, titular de la cuenta, configuración activa, ubicación/procesamiento de datos, subprocesadores y transferencias internacionales.
 6. Plazos de conservación, criterios de eliminación y quién puede acceder a los mensajes.
 7. Derechos disponibles para las personas, procedimiento y plazos de respuesta conforme a la jurisdicción.
-8. Proveedor de hosting finalmente elegido y datos técnicos que este pueda registrar.
+8. Datos técnicos, retención, subprocesadores y demás condiciones aplicables al hosting Netlify y a su cuenta.
 9. Si se usan cookies, analítica, píxeles u otros mecanismos adicionales; no se deben afirmar ausencias sin comprobar la configuración final.
 10. Aprobación del texto final, fecha de vigencia y enlace visible junto al formulario.
 
@@ -34,7 +34,7 @@
 > **Finalidad y base legal:** [COMPLETAR Y VALIDAR SEGÚN EL USO REAL Y LA JURISDICCIÓN].  
 > **Conservación, destinatarios y transferencias:** [CONFIRMAR CON FORMSPREE Y EL RESPONSABLE].  
 > **Derechos y forma de ejercerlos:** [COMPLETAR CONFORME A LA LEGISLACIÓN APLICABLE].  
-> **Hosting y datos técnicos:** [COMPLETAR CUANDO SE ELIJA Y CONFIGURE EL PROVEEDOR].  
+> **Hosting y datos técnicos:** el sitio se publica en Netlify. [COMPLETAR Y VALIDAR QUÉ DATOS TÉCNICOS, RETENCIÓN, SUBPROCESADORES Y TRANSFERENCIAS APLICAN].
 >
 > [AÑADIR FECHA DE VIGENCIA Y CUALQUIER OTRO AVISO/CONSENTIMIENTO QUE EXIJA LA REVISIÓN LEGAL].
 

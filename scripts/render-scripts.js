@@ -18,7 +18,7 @@ module.exports = function renderScripts() {
     const copyright = `/*!
 * Start Bootstrap - ${packageJSON.title} v${packageJSON.version} (${packageJSON.homepage})
 * Copyright 2013-${new Date().getFullYear()} ${packageJSON.author}
-* Licensed under ${packageJSON.license} (${repositoryURL}/blob/master/LICENSE)
+* Licensed under ${packageJSON.license} (${repositoryURL}/blob/main/LICENSE)
 */
 `
     const scriptsJS = fs.readFileSync(sourcePathScriptsJS);

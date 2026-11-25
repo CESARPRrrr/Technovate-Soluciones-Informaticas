@@ -2,15 +2,13 @@
 
 Este registro describe cambios observables en la revisión técnica de TECHNOVA; no asigna fechas ni responsables no confirmados.
 
-## Preparación de CI y repositorio independiente
+## Mantenimiento y coherencia de publicación
 
-- Se reemplazó el despliegue automático de GitHub Pages por un workflow de CI que instala dependencias, compila y valida el resultado en cada push, Pull Request y ejecución manual, sin publicar el sitio.
-- Se añadieron `npm run check:js` y `npm run check:dist` para detectar errores de sintaxis JavaScript, IDs duplicados, anclas internas sin destino y referencias locales rotas en el HTML/CSS generado.
-- Se añadió `netlify.toml` con la construcción validada, Node.js 20 y `dist/` como carpeta de publicación, sin reglas de despliegue remoto ni credenciales.
-- Se preparó un borrador de privacidad que separa los hechos observados de la información legal que debe confirmar el responsable antes de publicarlo.
-- Se amplió la documentación con el objetivo, arquitectura, dependencias, proceso de construcción, comandos, integración Netlify y límites conocidos.
-- Se documentó cómo iniciar un repositorio nuevo desde una copia sin `.git/`, preservando intacto el repositorio actual y sus remotos.
-- Se documentó Netlify como plataforma prevista, sin conectar una cuenta ni publicar el sitio.
+- Se alinearon `homepage`, `bugs.url` y `repository.url` con el repositorio oficial `CESARPRrrr/Technovate-Soluciones-Informaticas`.
+- Se actualizaron los encabezados generados de Sass y JavaScript para enlazar a `main/LICENSE`, y se regeneró `dist/` mediante el build habitual.
+- Se actualizó la documentación para reflejar el repositorio público, la rama principal `main`, el sitio publicado en Netlify y la separación entre CI (GitHub Actions) y despliegue (Netlify).
+- Se actualizó el borrador de privacidad para identificar el hosting Netlify sin inventar sus prácticas ni completar datos legales pendientes.
+- Se documentó que faltan datos aprobados de dos integrantes del equipo académico; los perfiles existentes se conservaron.
 
 ## Preparación de la versión provisional
 
@@ -21,7 +19,7 @@ Este registro describe cambios observables en la revisión técnica de TECHNOVA;
 - Se excluyeron las fotografías locales de Git y de `dist/`; la compilación copia únicamente los recursos declarados explícitamente.
 - Se actualizaron dependencias afectadas y se verificó el árbol resultante con las auditorías de npm.
 - Se sirve Bootstrap Icons desde el proyecto en vez de solicitarlo a un CDN.
-- Se había configurado la compilación y el despliegue de `dist/` a GitHub Pages al actualizar `master`; esa configuración fue reemplazada por CI sin despliegue.
+- Se retiró el workflow histórico de despliegue a GitHub Pages; GitHub Actions se mantiene como CI y Netlify gestiona la publicación.
 - Se incluyen en `dist/assets/licenses/` los avisos MIT de Start Bootstrap, Bootstrap y Bootstrap Icons.
 - Se actualizaron README, atribuciones y documentación técnica para reflejar el contenido provisional, el proceso de compilación y los requisitos de publicación.
 

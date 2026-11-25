@@ -2,7 +2,7 @@
 
 ## Alcance y base de partida
 
-El nombre visible del proyecto es TECHNOVA / Soluciones Informáticas. El objetivo es presentar una propuesta de empresa tecnológica y sus áreas de servicios en un sitio estático, adaptable y accesible, además de verificar su construcción antes de publicarlo.
+El nombre visible del proyecto es TECHNOVA / Soluciones Informáticas. El objetivo es presentar la propuesta de empresa tecnológica y sus áreas de servicios en un sitio estático, adaptable y accesible. El repositorio público oficial es `CESARPRrrr/Technovate-Soluciones-Informaticas`, su rama principal es `main` y el sitio publicado está en `https://technovate-soluciones-informaticas.netlify.app/`.
 
 El proyecto partió del repositorio existente de la plantilla **Business Frontpage** de Start Bootstrap. Se conservaron la estructura de construcción y la base técnica Bootstrap, y se modificaron el contenido, la identidad visual y las secciones para TECHNOVA. La autoría original no se atribuye al equipo TECHNOVA: la procedencia se documenta en [`ATRIBUCIONES.md`](./ATRIBUCIONES.md) y se preserva el archivo [`LICENSE`](./LICENSE) MIT sin cambios.
 
@@ -44,17 +44,19 @@ Otros comandos disponibles: `npm run clean`, `npm run build:pug`, `npm run build
 
 `.github/workflows/ci.yml` se ejecuta en `push`, `pull_request` y por `workflow_dispatch`. En un runner Linux configura Node.js 20, ejecuta `npm ci`, `npm run build`, `npm run check:js` y `npm run check:dist`. El permiso es solo lectura (`contents: read`); la concurrencia cancela ejecuciones anteriores del mismo flujo y referencia. Cualquier fallo de instalación, compilación o validación hace fallar el trabajo. No se configuran despliegues, credenciales ni secretos.
 
-## Publicación prevista en Netlify
+## Integración continua y despliegue
 
-`netlify.toml` configura Node.js 20, el comando `npm run build && npm run check:js && npm run check:dist` y `dist/` como publicación. Netlify instala las dependencias del proyecto a partir de `package-lock.json`. El sitio usa una sola página y anclas HTML; no requiere un fallback SPA ni redirecciones especiales. Los recursos locales se construyen en `dist/`; la validación de CI y del build de Netlify falla ante enlaces locales a archivos inexistentes.
+La **integración continua (CI)** se ejecuta en GitHub Actions mediante `.github/workflows/ci.yml`. Ante `push`, `pull_request` y ejecución manual, instala con `npm ci`, construye y ejecuta los validadores. Su permiso es de solo lectura y no publica el sitio.
 
-Después de crear el repositorio nuevo, se debe importar en Netlify desde GitHub, autorizar la cuenta, seleccionar el repositorio y verificar que detecte el `netlify.toml`. Configurar la rama principal como producción y habilitar Deploy Previews para Pull Requests. Netlify puede desplegar automáticamente al integrarse cambios; nada de ello está enlazado o publicado en esta etapa. No está instalado el CLI de Netlify.
+El **despliegue** se gestiona aparte en Netlify. El sitio se publica en `https://technovate-soluciones-informaticas.netlify.app/`; `netlify.toml` configura Node.js 20, el comando `npm run build && npm run check:js && npm run check:dist` y `dist/` como directorio publicado. La publicación y las vistas previas son responsabilidad de la integración Netlify-GitHub, no del workflow CI. El sitio es una página con anclas HTML; no necesita fallback SPA ni redirecciones especiales. Los 404 usan el comportamiento predeterminado de Netlify.
+
+El sitio publicado está conectado al repositorio GitHub según el estado operativo proporcionado para este proyecto. La configuración de la cuenta, permisos y reglas específicas de Deploy Previews se administran en Netlify y no se almacenan en este repositorio.
 
 ## Formulario y privacidad
 
 El formulario contiene nombre, correo obligatorio, teléfono opcional y mensaje; usa validación nativa del navegador y está configurado para enviar a la URL Formspree que aparece en el HTML. El JavaScript solo muestra confirmación si la respuesta HTTP es exitosa, conserva los datos y muestra error si la respuesta falla. La petición GET de consulta al endpoint respondió 405 (método no permitido), resultado compatible con un endpoint de envío, pero no confirma que el formulario esté activo. No se envió un POST ni datos. La presencia de un endpoint público no confirma que la cuenta sea activa o esté controlada por TECHNOVA. No hay secretos de Formspree en el código; su identificador de formulario es público por diseño.
 
-No se encontró un aviso de privacidad aprobado. `PRIVACIDAD_BORRADOR.md` documenta los campos y procesamiento visibles y lista los datos legales/operativos por confirmar; no se debe publicar sin revisión del responsable. Entre otros, faltan identidad y contacto del responsable, finalidad/base legal, retención, región/subprocesadores y derechos aplicables. Evitar recopilar datos reales hasta completar y aprobar el aviso.
+No se encontró un aviso de privacidad aprobado. `PRIVACIDAD_BORRADOR.md` documenta los campos y procesamiento visibles y lista los datos legales/operativos por confirmar; no se debe publicar como aviso final sin revisión del responsable. El sitio está publicado en Netlify, pero se desconocen la identidad/contacto del responsable, finalidad/base legal, retención, detalles del procesamiento por Formspree/Netlify y derechos aplicables. La publicación no implica que estos datos o el aviso hayan sido aprobados.
 
 Esta automatización no sustituye pruebas visuales, pruebas de interacción en navegador, revisión de accesibilidad ni comprobación de enlaces externos; esos aspectos requieren una auditoría adicional.
 
@@ -67,8 +69,8 @@ Esta automatización no sustituye pruebas visuales, pruebas de interacción en n
 | `src/pug/index.pug` | Fuente de la página en español. Presenta perfiles del equipo con cargos y fotografías, y el formulario configurado para enviar a Formspree. |
 | `src/scss/styles.scss` | Importa Bootstrap y define la identidad TECHNOVA: paleta azul oscuro y azul luminoso, hero, tarjetas de equipo, ilustraciones CSS, secciones, formulario oscuro y pie de página. Incluye reglas responsive, movimiento reducido, estados de foco y salto al contenido. |
 | `src/js/scripts.js` | Controla la navegación móvil y el envío accesible del formulario, incluidos estados de éxito y error. |
-| `package.json` y `package-lock.json` | Identifican el proyecto y el repositorio TECHNOVA; se mantiene Start Bootstrap como autor de la plantilla y las dependencias bloqueadas. |
-| `scripts/render-scss.js` y `scripts/render-scripts.js` | Generan los encabezados de atribución con enlaces a la licencia del repositorio TECHNOVA. |
+| `package.json` y `package-lock.json` | Identifican el proyecto; `homepage`, `bugs` y `repository` apuntan al repositorio oficial, Start Bootstrap sigue como autor de la plantilla y las dependencias quedan bloqueadas. |
+| `scripts/render-scss.js` y `scripts/render-scripts.js` | Generan encabezados de atribución con enlaces a `main/LICENSE` del repositorio oficial. |
 | `scripts/sb-watch.js` | Recompila archivos observados con dependencias declaradas por el proyecto; ya no depende de la presencia transitiva de Lodash. |
 | `scripts/render-assets.js` | Copia favicon, fotografías aprobadas del equipo, iconos locales y avisos MIT a `dist/`. |
 | `scripts/check-dist.js` | Falla si hay IDs duplicados, anclas internas sin destino o referencias locales ausentes en HTML/CSS. |
@@ -147,11 +149,10 @@ Las comprobaciones de esta preparación se ejecutaron localmente con Node.js 18.
 
 En `package.json` no hay suite de pruebas unitarias o de navegador; la validación local del formulario y del menú comprueba estados del cliente, pero no certifica el estado de Formspree ni probó los mensajes de respuesta/error del servicio. El workflow CI corre Node.js 20 (la ejecución local se hizo con Node.js 18.19.1). La CI no consulta URLs externas ni verifica accesibilidad automáticamente. La vista previa se revisó en navegador; esta etapa confirma el build local, pero no despliegue en Netlify.
 
-## Pendientes
+## Pendientes que requieren información del equipo
 
-- Completar y aprobar `PRIVACIDAD_BORRADOR.md`, incluida la identidad y contacto del responsable, antes de recopilar datos reales.
+- Completar y aprobar `PRIVACIDAD_BORRADOR.md`, incluida la identidad y contacto del responsable, antes de publicar el aviso final o recopilar datos reales.
+- Facilitar nombres, cargos y fotografías aprobados de los otros dos integrantes del equipo académico.
 - Incorporar perfiles profesionales o redes sociales solo si el equipo los proporciona.
-- Confirmar si existen otros dos integrantes y, si corresponde, facilitar sus nombres, cargos y fotografías aprobados.
 - Validar con el equipo el contenido institucional y el alcance de los servicios antes de presentarlos como información oficial.
 - Confirmar la titularidad/estado del formulario Formspree y hacer una prueba real autorizada antes de publicarlo.
-- Conectar el repositorio nuevo con Netlify y revisar el Deploy Preview; Netlify CLI no está instalado y no se hizo un despliegue remoto.

@@ -1,7 +1,7 @@
 /*!
-* Start Bootstrap - TECHNOVA - Soluciones Informáticas v5.0.9 (https://github.com/CESARPRrrr/technova-soluciones-informaticas)
+* Start Bootstrap - TECHNOVA - Soluciones Informáticas v5.0.9 (https://github.com/CESARPRrrr/Technovate-Soluciones-Informaticas)
 * Copyright 2013-2026 Start Bootstrap
-* Licensed under MIT (https://github.com/CESARPRrrr/technova-soluciones-informaticas/blob/master/LICENSE)
+* Licensed under MIT (https://github.com/CESARPRrrr/Technovate-Soluciones-Informaticas/blob/main/LICENSE)
 */
 const navigationToggle = document.querySelector('.navbar-toggler');
 const navigationMenu = document.querySelector('#mainNavigation');
