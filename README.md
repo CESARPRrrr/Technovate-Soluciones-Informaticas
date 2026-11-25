@@ -8,7 +8,7 @@ TECHNOVA se presenta aquí como una propuesta de empresa tecnológica orientada 
 
 ## Objetivo del proyecto
 
-Presentar una propuesta de identidad y servicios digitales de TECHNOVA en un sitio estático, adaptable y accesible, y conservar una cadena de construcción reproducible que pueda verificarse antes de publicar.
+Presentar la identidad y los servicios propuestos de TECHNOVA en un sitio estático, adaptable y accesible, con construcción reproducible, integración continua y publicación en Netlify.
 
 ## Origen de la plantilla
 
@@ -64,35 +64,26 @@ npm run check:dist
 
 Las fuentes editables están en `src/`; no edites manualmente `dist/`, porque se regenera con el proceso de construcción.
 
-## Integración continua
+## Integración continua y despliegue
 
-El workflow [`.github/workflows/ci.yml`](./.github/workflows/ci.yml) ejecuta en cada push, Pull Request y solicitud manual. Usa Node.js 20, `npm ci`, `npm run build`, `npm run check:js` y `npm run check:dist`. La compilación comprueba los procesos Pug/Sass/JavaScript/assets; los validadores comprueban sintaxis de JavaScript, anclas y recursos locales generados. Si un comando falla, falla el trabajo. Solo tiene permiso de lectura. No publica el sitio ni requiere secretos. No hay una suite automatizada de pruebas unitarias o de navegador.
+La **CI** de GitHub Actions, definida en [`.github/workflows/ci.yml`](./.github/workflows/ci.yml), comprueba cambios en `push`, `pull_request` y ejecuciones manuales. Usa Node.js 20, `npm ci`, `npm run build`, `npm run check:js` y `npm run check:dist`. Falla si alguna etapa falla, tiene permiso de lectura y no despliega. No requiere secretos. No hay una suite de pruebas unitarias o de navegador.
 
-## Publicación en Netlify
+El **despliegue** lo gestiona Netlify por separado de GitHub Actions. El sitio publicado está en [technovate-soluciones-informaticas.netlify.app](https://technovate-soluciones-informaticas.netlify.app/), conectado al repositorio GitHub. Netlify sirve la carpeta generada `dist/`; la configuración de construcción está en [`netlify.toml`](./netlify.toml). Los despliegues y las vistas previas se administran desde Netlify; no los ejecuta la CI de GitHub.
 
-El sitio es estático y `npm run build` genera el sitio en `dist/`. [netlify.toml](./netlify.toml) configura ese directorio como publicación, usa Node.js 20 y ejecuta la construcción y validadores. No se requieren variables secretas para compilar. El sitio es una página con navegación por anclas, no una aplicación SPA con rutas de cliente; por ello no se añade una regla de reescritura ni una redirección personalizada. Los archivos no encontrados recibirán el comportamiento 404 predeterminado de Netlify.
-
-Cuando el nuevo repositorio GitHub esté creado y confirmado:
-
-1. Inicia sesión en Netlify y elige **Add new site → Import an existing project**.
-2. Autoriza GitHub y selecciona el repositorio nuevo de TECHNOVA.
-3. Revisa que la configuración detectada coincida con `netlify.toml`: comando `npm run build && npm run check:js && npm run check:dist`, directorio de publicación `dist` y Node.js 20.
-4. Selecciona la rama principal para producción y deja habilitadas las vistas previas de Pull Requests/Deploy Previews.
-5. Inicia el primer despliegue desde Netlify después de revisar el contenido, la privacidad y la cuenta Formspree. Los siguientes pushes a la rama de producción y Pull Requests se procesarán según la configuración de Netlify.
-
-No se ha creado ni autorizado una cuenta, enlazado el repositorio ni publicado el sitio. El CLI de Netlify no está instalado. La CI de GitHub continúa verificando cambios sin desplegar. Para publicar el formulario se debe confirmar antes que el endpoint Formspree pertenece a la organización y está activo.
+El sitio consta de una página estática con navegación por anclas, no requiere fallback SPA ni redirecciones personalizadas. Los archivos no encontrados reciben el 404 predeterminado de Netlify. No se requieren secretos para construir el sitio. La configuración de publicación y las vistas previas se administran en Netlify.
 
 ## Privacidad del formulario
 
 El formulario está configurado para transmitir nombre, correo, teléfono opcional y mensaje a Formspree. El proyecto no contiene un aviso de privacidad aprobado ni permite confirmar el titular de la cuenta, retención, ubicación de procesamiento o requisitos legales aplicables. Consulta [PRIVACIDAD_BORRADOR.md](./PRIVACIDAD_BORRADOR.md): identifica hechos técnicos y campos que el responsable debe completar. No es un aviso legal final ni debe publicarse sin revisión y aprobación.
 
-## Preparar un repositorio nuevo
+## Repositorio y publicación
 
-El directorio actual conserva su `.git`, historial, ramas y remotos. Para no heredar ese historial, cuando tengas un respaldo crea un directorio nuevo con una copia de los archivos del proyecto, excluyendo `.git/` y `node_modules/`; luego crea allí un repositorio Git nuevo, haz el primer commit y enlázalo al repositorio vacío que crees en GitHub. No inicialices GitHub con README, licencia ni `.gitignore` para evitar conflictos. No hagas push al remoto anterior.
+- Repositorio público: [CESARPRrrr/Technovate-Soluciones-Informaticas](https://github.com/CESARPRrrr/Technovate-Soluciones-Informaticas).
+- Rama principal: `main`.
+- Sitio público: [technovate-soluciones-informaticas.netlify.app](https://technovate-soluciones-informaticas.netlify.app/).
+- GitHub Actions realiza CI; Netlify está conectado al repositorio y construye/publica el sitio de forma independiente.
 
-Cuando conozcas la URL nueva, actualiza los enlaces del repositorio en `package.json` (`homepage`, `bugs` y `repository`) y los encabezados/licencias generados que apunten al repositorio actual. La plataforma de hosting y cualquier configuración de formulario/privacidad deben confirmarse por separado antes de publicar.
-
-`npm audit` y `npm audit --omit=dev` reportaron cero vulnerabilidades tras actualizar las dependencias afectadas.
+Los metadatos de `package.json` y los encabezados generados usan el repositorio oficial. Las dependencias se bloquean en `package-lock.json`; revisa el resultado actual de `npm audit` por separado cuando necesites un informe de vulnerabilidades vigente.
 
 ## Estructura de carpetas
 
@@ -126,7 +117,7 @@ Cuando conozcas la URL nueva, actualiza los enlaces del repositorio en `package.
 - Perfiles de César Piña y Manuel Barsik, con sus cargos y fotografías.
 - Formulario con validación del navegador configurado para enviar a Formspree; muestra el estado según la respuesta HTTP sin revelar el correo de destino. El endpoint no se ha verificado con un envío.
 
-En los recursos disponibles solo constan esos dos perfiles y sus dos fotografías. No se encontraron datos o imágenes aprobados de otros integrantes; no se añadieron perfiles para completar cuatro.
+El proyecto académico contempla cuatro integrantes, pero los recursos disponibles solo identifican a estos dos perfiles y sus fotografías. Faltan los datos aprobados de los otros dos; no se añadieron perfiles ficticios.
 
 ## Modificaciones realizadas
 
@@ -141,7 +132,8 @@ El detalle por archivo, las pruebas ejecutadas y los pendientes se documentan en
 
 ## Información pendiente de completar
 
-- Completar y aprobar el [borrador de privacidad](./PRIVACIDAD_BORRADOR.md) antes de publicar un aviso y recopilar datos reales.
+- Completar y aprobar el [borrador de privacidad](./PRIVACIDAD_BORRADOR.md) antes de publicar un aviso final o recopilar datos reales.
+- Proporcionar nombres, cargos y fotografías aprobados de los otros dos integrantes para completar el equipo académico.
 - Incorporar descripciones biográficas adicionales solo si se facilitan textos aprobados; por ahora se muestran únicamente cargos y descripciones basadas en ellos.
 - Perfiles profesionales o redes sociales, si el equipo decide proporcionarlos.
 - Confirmación del alcance de los servicios y del contenido institucional antes de publicar como información oficial.

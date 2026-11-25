@@ -25,9 +25,9 @@
         "theme",
         "template"
     ],
-    "homepage": "https://github.com/CESARPRrrr/technova-soluciones-informaticas",
+    "homepage": "https://github.com/CESARPRrrr/Technovate-Soluciones-Informaticas",
     "bugs": {
-        "url": "https://github.com/CESARPRrrr/technova-soluciones-informaticas/issues"
+        "url": "https://github.com/CESARPRrrr/Technovate-Soluciones-Informaticas/issues"
     },
     "license": "MIT",
     "author": "Start Bootstrap",
@@ -36,7 +36,7 @@
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/CESARPRrrr/technova-soluciones-informaticas.git"
+        "url": "https://github.com/CESARPRrrr/Technovate-Soluciones-Informaticas.git"
     },
     "dependencies": {
         "bootstrap": "5.2.3",
