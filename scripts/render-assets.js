@@ -23,6 +23,14 @@ module.exports = function renderAssets() {
             destination: upath.join(distPath, 'assets/manuel-barsik.jpg')
         },
         {
+            source: upath.join(sourcePath, 'asistente-atencion-cliente.png'),
+            destination: upath.join(distPath, 'assets/asistente-atencion-cliente.png')
+        },
+        {
+            source: upath.join(sourcePath, 'asistente-gestion-administrativa.png'),
+            destination: upath.join(distPath, 'assets/asistente-gestion-administrativa.png')
+        },
+        {
             source: upath.join(iconPackagePath, 'bootstrap-icons.min.css'),
             destination: upath.join(distPath, 'css/bootstrap-icons.min.css')
         },
