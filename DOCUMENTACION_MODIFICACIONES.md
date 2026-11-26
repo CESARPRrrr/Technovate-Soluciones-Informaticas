@@ -15,7 +15,7 @@ El proyecto no utiliza un framework de aplicación ni un servidor backend propio
 | `src/pug/index.pug` | Fuente del documento, navegación, servicios, equipo, contacto y pie de página. |
 | `src/scss/styles.scss` | Importación de Bootstrap y estilos propios/responsive de TECHNOVA. |
 | `src/js/scripts.js` | Menú móvil y estado accesible del envío del formulario. |
-| `src/assets/` | Favicon y dos fotografías de equipo disponibles. |
+| `src/assets/` | Favicon y las cuatro fotografías del equipo. |
 | `scripts/` | Tareas de construcción, copia de recursos, vista previa y validación de `dist/`. |
 | `dist/` | Artefacto estático generado; no es fuente editable. |
 | `.github/workflows/ci.yml` | Integración continua; instala dependencias, construye y valida enlaces/recursos. No despliega. |
@@ -77,7 +77,7 @@ Esta automatización no sustituye pruebas visuales, pruebas de interacción en n
 | `scripts/check-js.js` | Analiza sintaxis de JavaScript en scripts fuente y artefacto generado, sin ejecutar el código. |
 | `netlify.toml` | Configura la construcción y validación del sitio estático, Node.js 20 y `dist/` como carpeta publicada. |
 | `PRIVACIDAD_BORRADOR.md` | Resume el flujo de datos verificable y los datos que la persona responsable debe confirmar; no es aviso legal aprobado. |
-| `.gitignore` | Excluye secretos y permite explícitamente las dos fotografías aprobadas del equipo. |
+| `.gitignore` | Excluye secretos y conserva las fotografías aprobadas del equipo. |
 | `.github/workflows/ci.yml` | Instala dependencias y verifica la compilación en pushes y Pull Requests; no despliega. |
 
 ### Artefactos generados y documentación
@@ -92,7 +92,7 @@ Esta automatización no sustituye pruebas visuales, pruebas de interacción en n
 | `ATRIBUCIONES.md` | Procedencia de Start Bootstrap, licencia MIT y atribuciones de terceros. |
 | `DOCUMENTACION_MODIFICACIONES.md` | Este documento: alcance técnico, pruebas registradas y pendientes. |
 
-`dist/` es generado por el proceso de compilación existente; las fuentes que se deben editar son las de `src/`. Solo se distribuyen las dos fotografías explícitamente configuradas. El archivo `LICENSE` original se conserva sin cambios.
+`dist/` es generado por el proceso de compilación existente; las fuentes que se deben editar son las de `src/`. Se distribuyen las cuatro fotografías del equipo configuradas explícitamente. El archivo `LICENSE` original se conserva sin cambios.
 
 ## Adaptación de contenido y diseño
 
@@ -101,8 +101,8 @@ Esta automatización no sustituye pruebas visuales, pruebas de interacción en n
 - Se retiraron los precios y los testimonios de muestra; no se presentan tarifas ni clientes no confirmados.
 - Se añadieron presentación institucional y una secuencia de trabajo de cuatro etapas: escuchar, definir, diseñar/construir y aprender/mejorar.
 - Se restauraron los perfiles con los nombres y cargos proporcionados, junto con las fotografías locales correspondientes.
-- En los archivos disponibles se encontraron dos perfiles con fotografía: César Piña (Director General/CEO) y Manuel Barsik (Director de Tecnología y Operaciones/CTO/COO). No hay información o imágenes aprobadas para dos integrantes adicionales; no se inventaron.
-- La cuadrícula usa tarjetas Bootstrap de media columna en pantallas medianas y mayores; se pueden agregar dos tarjetas más cuando se faciliten datos y fotografías aprobados, sin ocupar espacios con contenido de muestra.
+- Actualmente se presentan cuatro perfiles con fotografía: César Piña (Director General/CEO), Manuel Barsik (Director de Tecnología y Operaciones/CTO/COO), Katerina Gutiérrez (Asistente de Atención al Cliente) y Betzabeth Medina (Asistente de Gestión Administrativa). No se añadieron perfiles ficticios.
+- La cuadrícula presenta cuatro tarjetas Bootstrap de media columna en pantallas medianas y mayores.
 - No había biografías aprobadas disponibles en los archivos inspeccionados; los textos de apoyo se limitan a resumir los cargos, sin afirmar trayectoria, estudios ni logros.
 - Se creó una identidad gráfica con CSS y componentes propios. Las ilustraciones decorativas se construyen con CSS e iconos.
 - Se conservó la plantilla como origen y se añadió una referencia al repositorio de Start Bootstrap en el pie de página.
@@ -152,7 +152,6 @@ En `package.json` no hay suite de pruebas unitarias o de navegador; la validaci�
 ## Pendientes que requieren información del equipo
 
 - Completar y aprobar `PRIVACIDAD_BORRADOR.md`, incluida la identidad y contacto del responsable, antes de publicar el aviso final o recopilar datos reales.
-- Facilitar nombres, cargos y fotografías aprobados de los otros dos integrantes del equipo académico.
 - Incorporar perfiles profesionales o redes sociales solo si el equipo los proporciona.
 - Validar con el equipo el contenido institucional y el alcance de los servicios antes de presentarlos como información oficial.
 - Confirmar la titularidad/estado del formulario Formspree y hacer una prueba real autorizada antes de publicarlo.

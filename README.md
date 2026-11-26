@@ -99,7 +99,7 @@ Los metadatos de `package.json` y los encabezados generados usan el repositorio 
 │   ├── pug/index.pug              # Contenido y estructura de la página TECHNOVA
 │   └── scss/styles.scss           # Estilos Bootstrap y personalización visual
 ├── ATRIBUCIONES.md
-├── .gitignore                    # Excluye secretos y permite solo las fotos aprobadas del equipo
+├── .gitignore                    # Excluye secretos y conserva las fotografías aprobadas del equipo
 ├── CHANGELOG.md
 ├── DOCUMENTACION_MODIFICACIONES.md
 ├── PRIVACIDAD_BORRADOR.md        # Borrador pendiente de datos y aprobación del responsable
@@ -114,10 +114,10 @@ Los metadatos de `package.json` y los encabezados generados usan el repositorio 
 - Menú móvil expandible, operable con JavaScript y con enlaces que lo cierran al seleccionar una sección.
 - Diseño adaptable basado en los puntos de quiebre y la grilla de Bootstrap.
 - Secciones de servicios, descripción de la propuesta TECHNOVA y proceso de trabajo.
-- Perfiles de César Piña y Manuel Barsik, con sus cargos y fotografías.
+- Perfiles de César Piña, Manuel Barsik, Katerina Gutiérrez y Betzabeth Medina, con sus cargos y fotografías.
 - Formulario con validación del navegador configurado para enviar a Formspree; muestra el estado según la respuesta HTTP sin revelar el correo de destino. El endpoint no se ha verificado con un envío.
 
-El proyecto académico contempla cuatro integrantes, pero los recursos disponibles solo identifican a estos dos perfiles y sus fotografías. Faltan los datos aprobados de los otros dos; no se añadieron perfiles ficticios.
+El proyecto académico contempla cuatro integrantes. El sitio presenta actualmente los perfiles de las cuatro personas con sus cargos y fotografías; no se añadieron perfiles ficticios.
 
 ## Modificaciones realizadas
 
@@ -133,7 +133,6 @@ El detalle por archivo, las pruebas ejecutadas y los pendientes se documentan en
 ## Información pendiente de completar
 
 - Completar y aprobar el [borrador de privacidad](./PRIVACIDAD_BORRADOR.md) antes de publicar un aviso final o recopilar datos reales.
-- Proporcionar nombres, cargos y fotografías aprobados de los otros dos integrantes para completar el equipo académico.
 - Incorporar descripciones biográficas adicionales solo si se facilitan textos aprobados; por ahora se muestran únicamente cargos y descripciones basadas en ellos.
 - Perfiles profesionales o redes sociales, si el equipo decide proporcionarlos.
 - Confirmación del alcance de los servicios y del contenido institucional antes de publicar como información oficial.

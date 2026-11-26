@@ -8,7 +8,7 @@ Este registro describe cambios observables en la revisión técnica de TECHNOVA;
 - Se actualizaron los encabezados generados de Sass y JavaScript para enlazar a `main/LICENSE`, y se regeneró `dist/` mediante el build habitual.
 - Se actualizó la documentación para reflejar el repositorio público, la rama principal `main`, el sitio publicado en Netlify y la separación entre CI (GitHub Actions) y despliegue (Netlify).
 - Se actualizó el borrador de privacidad para identificar el hosting Netlify sin inventar sus prácticas ni completar datos legales pendientes.
-- Se documentó que faltan datos aprobados de dos integrantes del equipo académico; los perfiles existentes se conservaron.
+- En una etapa inicial se documentó que faltaban dos perfiles aprobados; posteriormente se incorporaron Katerina Gutiérrez y Betzabeth Medina, y el equipo publicado quedó conformado por cuatro integrantes.
 
 ## Preparación de la versión provisional
 
@@ -26,7 +26,7 @@ Este registro describe cambios observables en la revisión técnica de TECHNOVA;
 ## Restauración de perfiles y contacto
 
 - Se restauraron en la interfaz los perfiles de César Piña (Director General, CEO) y Manuel Barsik (Director de Tecnología y Operaciones, CTO/COO), usando las fotografías locales disponibles.
-- Se permitió agregar a la compilación únicamente esas dos fotografías aprobadas; sus nombres de distribución se normalizan a minúsculas.
+- En esa etapa se configuró la compilación para agregar las dos fotografías aprobadas disponibles entonces; posteriormente se añadieron las fotografías de Katerina Gutiérrez y Betzabeth Medina. Actualmente se distribuyen las cuatro imágenes del equipo.
 - Se restauró un formulario accesible para nombre, correo, teléfono opcional y mensaje, con validación nativa, envío a Formspree, confirmación y mensajes de error.
 - Se actualizaron README y documentación técnica para quitar los avisos provisionales de equipo/contacto y describir el flujo restaurado.
 - No se encontró una biografía aprobada para cada integrante entre los archivos y el ZIP indicado no estaba disponible; por ello, el texto descriptivo se limita a los cargos proporcionados y no añade experiencia ni datos personales.
